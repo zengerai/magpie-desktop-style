@@ -1,0 +1,4 @@
+interface:
+  display_name: "Magpie Desktop Design Provider"
+  short_description: "为 product-ui 提供 Magpie 桌面布局、菜单栏浮层与状态反馈设计"
+  default_prompt: "使用 $magpie-desktop-style，按 Magpie 的视觉与布局设计这个工具，保留现有业务能力，并适配主窗口、菜单栏浮层和状态显示。"

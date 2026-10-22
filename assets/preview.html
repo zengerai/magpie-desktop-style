@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Magpie 风格 · 可复用样板</title><link rel="stylesheet" href="magpie.css">
+<style>
+body { margin: 0; background: #e9e9ed; }
+.preview { min-height: 100vh; padding: 26px; background: var(--mg-bg); }
+.preview-header { display: flex; align-items: center; gap: 12px; max-width: 1400px; margin: 0 auto 24px; }
+.preview-header h1 { margin: 0; font-size: 17px; font-weight: 600; }
+.preview-header p { margin: 5px 0 0; color: var(--mg-ctl-fg); font-size: 12px; }
+.preview-header button { margin-left: auto; background: var(--mg-card); border: 1px solid var(--mg-line); padding: 6px 12px; border-radius: 7px; }
+.stage { max-width: 1400px; margin: auto; display: grid; grid-template-columns: minmax(520px,1fr) 440px; gap: 28px; align-items: start; }
+.surface-label { color: var(--mg-ctl-fg); font-size: 11px; margin: 0 0 10px 2px; }
+.demo-select { width: 140px; }
+.demo-note { margin: 14px 2px; color: var(--mg-ctl-fg); font-size: 11.5px; line-height: 1.7; }
+.mg-window { height: 520px; container-type: inline-size; }
+.mg-content h2 { font-size: 11px; font-weight: 500; color: var(--mg-ctl-fg); margin: 16px 2px 7px; }
+.menubar-demo { display: flex; justify-content: flex-end; align-items: center; height: 30px; border-bottom: 1px solid var(--mg-line); margin-bottom: 8px; padding: 0 12px; gap: 8px; }
+.menubar-demo > span { margin-right: auto; font-size: 10.5px; color: var(--mg-muted); }
+.menubar-demo button { display: flex; align-items: center; gap: 3px; color: var(--mg-fg); }
+.menubar-demo button svg { width: 14px; height: 14px; }
+.tray-numbers { display: flex; flex-direction: column; font-size: 9.5px; font-weight: 600; line-height: 1.1; font-variant-numeric: tabular-nums; text-align: right; }
+#panel .mg-content { flex: 0 1 auto; }
+.mg-window .mg-field { flex: none; }
+@container (max-width: 650px) { .mg-row { flex-wrap: wrap; gap: 8px; } .mg-row .mg-who { flex-basis: calc(100% - 46px); } .mg-row .demo-select { margin-left: 34px; flex: 1; } }
+@media (max-width: 1080px) { .stage { grid-template-columns: 1fr; max-width: 850px; } .panel-column { width: min(440px,100%); margin: 0 auto; } }
+@media (max-width: 600px) { .preview { padding: 14px; } .preview-header { align-items: start; } .preview-header p { max-width: 240px; } .mg .mg-window { grid-template-columns: 120px minmax(0,1fr); } .mg .mg-sidebar { padding: 0 5px 8px; } .mg .mg-content { padding-left: 10px; padding-right: 10px; } .mg .mg-top { padding: 0 10px; } .mg .mg-crumb span { display: none; } .mg .mg-connection { font-size: 10px; padding: 0 5px; } }
+</style></head>
+<body><div class="mg preview" id="preview" data-theme="light">
+<svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden"><defs>
+<symbol id="box" viewBox="0 0 20 20"><rect x="3" y="4" width="14" height="12" rx="2"/><path d="M3 8h14M7 4v12"/></symbol>
+<symbol id="cloud" viewBox="0 0 20 20"><path d="M6 15h9a3 3 0 0 0 0-6 5 5 0 0 0-9-2 4 4 0 0 0 0 8Z"/></symbol>
+<symbol id="arrow" viewBox="0 0 20 20"><path d="m6 8 4 4 4-4"/></symbol>
+<symbol id="refresh" viewBox="0 0 20 20"><path d="M16 9a6 6 0 1 0-1 5M16 4v5h-5"/></symbol>
+<symbol id="gear" viewBox="0 0 20 20"><circle cx="10" cy="10" r="3"/><path d="m8 3 4 0 1 2 3 1 1 4-2 2-1 3-4 2-2-2-3-1-2-4 2-2 1-3Z"/></symbol>
+<symbol id="chart" viewBox="0 0 20 20"><path d="M4 16V9M8 16V5M12 16v-5M16 16V7"/></symbol>
+</defs></svg>
+<header class="preview-header"><div><h1>Magpie 风格 · 桌面工具样板</h1><p>窄侧栏、分组行、行内选择与菜单栏浮层。全部使用示例数据。</p></div><button id="theme">切换深色</button></header>
+<div class="stage">
+<section><p class="surface-label">01 / 主窗口</p><div class="mg-window" id="main-window" tabindex="-1">
+<aside class="mg-sidebar"><div class="mg-brand"><svg><use href="#box"/></svg>轻舟</div><div class="mg-caption">工作</div><div class="mg-nav" aria-current="page"><svg><use href="#box"/></svg>同步源</div><div class="mg-nav"><svg><use href="#chart"/></svg>活动记录</div><div class="mg-caption">管理</div><div class="mg-nav"><svg><use href="#cloud"/></svg>连接</div><div class="mg-sidebar-bottom"><div class="mg-nav"><svg><use href="#gear"/></svg>设置</div><div class="mg-connection"><i class="mg-dot"></i>示例服务正常</div></div></aside>
+<div class="mg-main"><header class="mg-top"><div class="mg-crumb"><svg><use href="#box"/></svg><span>工作 /</span><b>同步源</b></div><span class="mg-grow"></span><button class="mg-icon" data-refresh aria-label="刷新示例"><svg><use href="#refresh"/></svg></button></header>
+<main class="mg-content"><div class="mg-list" id="main-list"></div><h2>最近活动</h2><div class="mg-list"><div class="mg-row"><svg><use href="#cloud"/></svg><div class="mg-who"><div class="mg-name">资料库同步完成</div><div class="mg-sub">2 分钟前 · 12 个文件 · 无冲突</div></div></div><div class="mg-row"><svg><use href="#box"/></svg><div class="mg-who"><div class="mg-name">设计归档已更新</div><div class="mg-sub">18 分钟前 · 4 个文件</div></div></div></div></main>
+<footer class="mg-foot"><span class="mg-status" role="status" id="main-status">演示就绪</span></footer></div></div><p class="demo-note">名称与状态在左，常用选择在右；每组共用一个容器。点击选择器和开关可体验反馈。</p></section>
+<section class="panel-column"><p class="surface-label">02 / 系统菜单栏示意与快捷面板</p><div class="menubar-demo"><span>浏览器内示意</span><button data-tray aria-label="显示示例容量"><svg><use href="#cloud"/></svg><span class="tray-numbers"><span>24%</span><span>61%</span></span></button><button data-tray aria-label="显示示例归档容量"><svg><use href="#box"/></svg><span class="tray-numbers"><span>18%</span><span>32%</span></span></button></div>
+<div class="mg-panel" id="panel"><header class="mg-top"><div class="mg-brand"><svg><use href="#box"/></svg>轻舟</div><span class="mg-grow"></span><button class="mg-icon" data-refresh aria-label="刷新面板示例"><svg><use href="#refresh"/></svg></button><button class="mg-icon" id="open-window" aria-label="定位主窗口"><svg><use href="#box"/></svg></button></header>
+<div class="mg-tabs" role="tablist" aria-label="快捷面板"><button role="tab" id="tab-sources" aria-controls="sources" aria-selected="true" data-tab="sources">同步源</button><button role="tab" id="tab-capacity" aria-controls="capacity" aria-selected="false" tabindex="-1" data-tab="capacity">容量</button><button role="tab" id="tab-activity" aria-controls="activity" aria-selected="false" tabindex="-1" data-tab="activity">活动</button></div>
+<div class="mg-content"><div id="sources" role="tabpanel" aria-labelledby="tab-sources"><div class="mg-list" id="panel-list"></div></div><div id="capacity" role="tabpanel" aria-labelledby="tab-capacity" hidden><div class="mg-meter"><div class="mg-who"><div class="mg-name">团队资料库</div><div class="mg-sub">示例：已用 2.4 GB / 10 GB</div></div><div class="mg-ring" style="--p:24"><b>24%</b></div></div><div class="mg-meter"><div class="mg-who"><div class="mg-name">设计归档</div><div class="mg-sub">示例：已用 6.1 GB / 10 GB</div></div><div class="mg-ring" style="--p:61"><b>61%</b></div></div></div><div id="activity" role="tabpanel" aria-labelledby="tab-activity" hidden><div class="mg-list"><div class="mg-row"><div class="mg-who"><div class="mg-name">今日完成 16 个文件</div><div class="mg-sub">最近同步于 2 分钟前 · 示例数据</div></div></div></div></div></div>
+<footer class="mg-foot"><span class="mg-status" role="status" id="panel-status">示例数据</span><span class="mg-grow"></span><button class="mg-text" id="feedback">体验状态反馈</button></footer></div><p class="demo-note">36px 摘要行，点击原位展开。原作面板宽 440px；系统注册、失焦关闭与后台驻留须由原生宿主实现。</p></section>
+</div>
+<div id="picker" class="mg-picker" popover="auto" role="dialog" aria-label="选择同步方式"><input class="mg-search" id="search" type="search" placeholder="搜索同步方式" aria-label="搜索同步方式"><div class="mg-options" id="options" role="listbox" aria-label="同步方式"></div></div>
+</div><script src="preview.js"></script></body></html>

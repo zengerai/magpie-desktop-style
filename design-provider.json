@@ -1,0 +1,70 @@
+{
+  "contract_version": "1.0",
+  "provider_id": "magpie-desktop-style",
+  "display_name": "Magpie Desktop Design Provider",
+  "entry": "SKILL.md",
+  "design_families": [
+    "magpie-desktop"
+  ],
+  "capabilities": [
+    "visual-spec",
+    "component-mapping",
+    "tokens",
+    "themes",
+    "motion",
+    "style-audit",
+    "implementation",
+    "style-candidate"
+  ],
+  "surfaces": [
+    "desktop-web",
+    "desktop-webview",
+    "menubar-popover",
+    "native-desktop-guidance"
+  ],
+  "framework_support": [
+    {
+      "name": "vanilla",
+      "level": "native",
+      "notes": "Bundled HTML/CSS/JavaScript sample and scoped CSS. Native means direct web asset use, not native OS integration."
+    },
+    {
+      "name": "react",
+      "level": "adapted",
+      "notes": "Map scoped tokens/styles onto existing React primitives; no bundled React component library."
+    },
+    {
+      "name": "vue",
+      "level": "adapted",
+      "notes": "Adapt styles and states to existing Vue components; no React dependency."
+    },
+    {
+      "name": "electron",
+      "level": "adapted",
+      "notes": "Renderer styling only; tray/window lifecycle requires host-specific implementation and testing."
+    },
+    {
+      "name": "tauri",
+      "level": "adapted",
+      "notes": "WebView styling only; native tray and panel behavior is not provided by the sample."
+    },
+    {
+      "name": "swiftui-appkit",
+      "level": "guidance",
+      "notes": "Visual tokens and native behavior guidance, not tested Swift components."
+    },
+    {
+      "name": "winui",
+      "level": "guidance",
+      "notes": "Map visual semantics to platform controls; native tray integration is not bundled."
+    },
+    {
+      "name": "qt",
+      "level": "guidance",
+      "notes": "Token/layout guidance; no bundled Qt widgets."
+    }
+  ],
+  "dependencies": {
+    "optional_libraries": []
+  }
+}
